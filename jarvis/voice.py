@@ -48,13 +48,13 @@ class VoiceHandler:
             print(f"✅ You said: {text}")
             return text
             
-        except sr.UnknownValueError:
+        except sr.UnknownValueValue:
             print("❌ Could not understand audio. Please try again.")
             return None
         except sr.RequestError as e:
             print(f"❌ Error with speech recognition service: {e}")
             return None
-        except sr.Timeout:
+        except (sr.WaitTimeoutError, sr.RequestError):
             print("❌ Listening timed out. Please try again.")
             return None
 
@@ -114,7 +114,7 @@ class VoiceHandler:
                 self.interrupt_flag = True
                 self.engine.stop()
                 
-        except (sr.UnknownValueError, sr.RequestError, sr.Timeout):
+        except (sr.UnknownValueError, sr.RequestError, sr.WaitTimeoutError):
             # No speech or error - continue speaking
             pass
         except Exception:
