@@ -14,7 +14,7 @@ class GroqClient:
             api_key: Groq API key.
         """
         self.client = Groq(api_key=api_key)
-        self.model = "llama-3.1-70b-versatile"  # Updated model
+        self.model = "mixtral-8x7b-32768"  # Latest available model
         self.conversation_history = []
 
     def chat(self, user_message: str) -> Optional[str]:
